@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\admin\ProductCategory;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,11 +30,24 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('admin/product', function (){
-    return view('admin.pages.product.list');
-});
+// Route::get('admin/product', function (){
+//     return view('admin.pages.product.list');
+// });
 
-Route::get('admin/user', function(){
-    return view('admin.pages.user.list');
+// Route::get('admin/user', function(){
+//     return view('admin.pages.user.list');
+// });
+
+require __DIR__ . '/auth.php';
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    //User
+    Route::get('user', [UserController::class, 'index'])->name('user');
+    //Product
+    Route::get('product', [ProductController::class, 'index'])->name('product');
+    //Product Category
+    Route::get('product_categories', [ProductCategory::class, 'index'])->name('product_categories');
+    Route::get('product_categories/add', [ProductCategory::class, 'add'])->name('product_categories.add');
+    Route::post('product_categories/store', [ProductCategory::class, 'store'])->name('product_categories.store');
 });
-require __DIR__.'/auth.php';

@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  <?php 
+  <?php
     $arrayPoint = [2 ,5, 7, 8, 9];
     $arrayAnimal = ['Meo', 'Cho', 'Ca', 'Gau', 'Huu Cao Co'];
 
@@ -17,6 +18,7 @@
       }
       echo ($key+1).".<span style='color:".$color.";'>$animal</span><br>";
     }
+  
   ?>
   <h1>Test AAAAA</h1>
 </body>

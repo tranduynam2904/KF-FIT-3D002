@@ -11,7 +11,7 @@
     <?php
     // $arrayPoint = [2 ,5, 7, 8, 9];
     // $arrayAnimal = ['Meo', 'Cho', 'Ca', 'Gau', 'Huu Cao Co'];
-    
+
     // foreach($arrayAnimal as $key => $animal){
     //   $color = 'green';
     //   if(($key+1) % 2 === 0){
