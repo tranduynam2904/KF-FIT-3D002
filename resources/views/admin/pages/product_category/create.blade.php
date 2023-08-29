@@ -32,6 +32,15 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <form role="form" method="post" action="{{ route('admin.product_categories.store') }}">
                                 @csrf
                                 <div class="col-sm-12">
@@ -39,16 +48,23 @@
                                         <div class="form-group">
                                             <label for="name">Name</label>
                                             <input type="text" name="name" class="form-control" type="name"
-                                                id="name" placeholder="Enter name">
+                                                value="{{ old('name') }}" id="name" placeholder="Enter name">
                                         </div>
+                                        @error('name')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <!-- select -->
                                         <div class="form-group">
                                             <label>Status</label>
                                             <select name="status" class="custom-select">
                                                 <option value="">---Please Select---</option>
-                                                <option value="1">Show</option>
-                                                <option value="0">Hide</option>
+                                                <option {{ old('status') === '1' ? 'selected' : '' }} value="1">Show
+                                                </option>
+                                                <option {{ old('status') === '0' ? 'selected' : '' }}value="0">Hide</option>
                                             </select>
+                                            @error('status')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>

@@ -47,7 +47,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     //Product
     Route::get('product', [ProductController::class, 'index'])->name('product');
     //Product Category
-    Route::get('product_categories', [ProductCategory::class, 'index'])->name('product_categories');
+    Route::get('product_categories', [ProductCategory::class, 'index'])->name('product_categories.list');
     Route::get('product_categories/add', [ProductCategory::class, 'add'])->name('product_categories.add');
     Route::post('product_categories/store', [ProductCategory::class, 'store'])->name('product_categories.store');
+    Route::get('product_categories/{id}', [ProductCategory::class, 'detail'])->name('product_categories.detail');
 });

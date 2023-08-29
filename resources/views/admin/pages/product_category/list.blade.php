@@ -28,7 +28,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Bordered Table</h3>
                                 <a style="width:fit-content; float:right; "
-                                    href="{{ route('admin.product_catagories.add') }}">Add</a>
+                                    href="{{ route('admin.product_categories.add') }}">Add</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -39,19 +39,28 @@
                                             <th>Task</th>
                                             <th>Progress</th>
                                             <th style="width: 40px">Label</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1.</td>
-                                            <td>Update software</td>
-                                            <td>
-                                                <div class="progress progress-xs">
-                                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                                </div>
-                                            </td>
-                                            <td><span class="badge bg-danger">55%</span></td>
-                                        </tr>
+                                        @forelse($productCategories as $productCategory)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $productCategory->name }}</td>
+                                                <td>
+                                                    <div
+                                                        class="{{ $productCategory->status ? 'btn btn-success' : 'btn btn-danger' }}">
+                                                        {{ $productCategory->status ? 'Show' : 'Hide' }}
+                                                    </div>
+                                                </td>
+                                                <td>{{ $productCategory->created_at }}</td>
+                                                <td><a href="{{ route('admin.product_categories.detail',['id'=> $productCategory->id]) }}">Detail</a></td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4">No data</td>
+                                            </tr>
+                                        @endforelse
                                         <tr>
                                             <td>2.</td>
                                             <td>Clean database</td>
